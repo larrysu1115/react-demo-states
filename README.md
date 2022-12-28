@@ -1,70 +1,77 @@
-# Getting Started with Create React App
+# 觀察 render, didMount, didUnmout
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+- 房間 Room 裡有兩個魚缸 Tank
+- 魚缸裡一開始有一條魚 Fish (始祖魚)
+- 可以按下 [加魚]，往魚缸中加一條魚
+- 可以按下 [清空]，將魚缸中的魚都清理掉
+- 每條魚可以 [變色]
 
-## Available Scripts
+Room, Tank, Fish 元件中都添加以下代碼，方便觀察 render, componentDidMount, componentDidUnmount 等事件
 
-In the project directory, you can run:
+```javascript
+// ...
 
-### `npm start`
+useEffect(() => {
+  console.log(`componentDidMount 加載 : ${name}`);
+  return () => {
+    console.log(`componentDidUnmount 卸載 : ${name}`);
+  };
+}, []);
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in your browser.
+console.log(`render 渲染 : ${name}`);
+return (
+  // ...
+)
+```
 
-The page will reload when you make changes.\
-You may also see any lint errors in the console.
+# 問題 : 父/子元件的 render, didMount 順序
 
-### `npm test`
+網頁剛載入時候。console.log() 會紀錄哪些訊息？順序為何？
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+# 問題 : 子元件 state 變更
 
-### `npm run build`
+重新載入網頁後，按下 始祖魚 的 [變色] 按鈕。console.log() 會紀錄哪些訊息？
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
+# 問題 : 父元件中新增子元件
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
+重新載入網頁後，按下 [加魚] 按鈕。console.log() 會紀錄哪些訊息？
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+# 問題 : 父元件中移除子元件
 
-### `npm run eject`
+重新載入網頁後，  
+按下 [加魚] 按鈕，  
+再按下魚缸的 [清空] 按鈕。  
+console.log() 會紀錄哪些訊息？
 
-**Note: this is a one-way operation. Once you `eject`, you can't go back!**
+# 問題 : 父元件 state 變更，對子元件的影響
 
-If you aren't satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
+重新載入網頁後，  
+按下 [加魚] 按鈕，  
+再按下房間的 [換右邊魚缸] 按鈕。  
+console.log() 會紀錄哪些訊息？
 
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you're on your own.
+# 問題 : 移除父元件
 
-You don't have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn't feel obligated to use this feature. However we understand that this tool wouldn't be useful if you couldn't customize it when you are ready for it.
+重新載入網頁後，  
+按下 [加魚] 按鈕，  
+再按下房間的 [刪除右邊魚缸] 按鈕。  
+console.log() 會紀錄哪些訊息？
 
-## Learn More
+# 問題 : React.StrictMode 的影響
 
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
+如果在 index.js 添加回原來 CRA 如下的代碼，會有什麼影響？
 
-To learn React, check out the [React documentation](https://reactjs.org/).
+```
+root.render(
+  <React.StrictMode>
+    <App />
+  </React.StrictMode>
+);
+```
 
-### Code Splitting
+# 附記 : react-bootstrap 的 CSS 樣式
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
+以 global css 方式提供，  
+因為 bootstrap 是整體 UI 框架。  
+其餘個別元件的開發，不應該去添加 global css。
 
-### Analyzing the Bundle Size
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
-
-### Making a Progressive Web App
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
-
-### Advanced Configuration
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
-
-### Deployment
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
-
-### `npm run build` fails to minify
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
