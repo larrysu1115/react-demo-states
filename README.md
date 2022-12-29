@@ -24,6 +24,16 @@ return (
 )
 ```
 
+# 問題 : 用純 javascript 來看 Tank.js
+
+javascript 呼叫方法，該方法的每一行執行順序？  
+
+```js
+Tank({ label = "test" });
+```
+
+這就是 react render 做的事情
+
 # 問題 : 父/子元件的 render, didMount 順序
 
 網頁剛載入時候。console.log() 會紀錄哪些訊息？順序為何？
