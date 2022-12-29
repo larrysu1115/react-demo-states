@@ -13,6 +13,7 @@ function Fish({ number = 0, type = "?", color = "" }) {
     return () => {
       console.log(`componentDidUnmount 卸載 : Fish: ${name}`);
     };
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
   const handleChangeColor = (e) => {
@@ -25,9 +26,7 @@ function Fish({ number = 0, type = "?", color = "" }) {
   return (
     <Card style={{ width: "19rem" }}>
       <Card.Body>
-        <Card.Text>
-          {name}
-        </Card.Text>
+        <Card.Text>{name}</Card.Text>
       </Card.Body>
       <Card.Footer>
         <Stack direction="horizontal" gap={1}>
