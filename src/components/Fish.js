@@ -19,7 +19,9 @@ function Fish({ number = 0, type = "?", color = "" }) {
   const handleChangeColor = (e) => {
     e.preventDefault();
     console.log(`handleChangeColor 變色 : ${name}`);
-    setMyColor("透明");
+    
+    if (myColor === "透明") setMyColor("紅");
+    else setMyColor("透明");
   };
 
   console.log(`render 渲染 : ${name}`);
