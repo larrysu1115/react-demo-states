@@ -74,6 +74,18 @@ console.log() 會紀錄哪些訊息？
 再按下房間的 [刪除右邊魚缸] 按鈕。  
 console.log() 會紀錄哪些訊息？
 
+# 問題 useEffect dependency array [] 或 undefined 不同
+
+```js
+useEffect(() => {
+  //...
+}, []);
+
+useEffect(() => {
+  //...
+});        // << 這是 undefined dependency array
+```
+
 # 問題 : React.StrictMode 的影響
 
 如果在 index.js 添加回原來 CRA 如下的代碼，會有什麼影響？
