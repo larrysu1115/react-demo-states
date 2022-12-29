@@ -11,9 +11,15 @@ function Fish({ number = 0, type = "?", color = "" }) {
   useEffect(() => {
     console.log(`componentDidMount 加載 : ${name}`);
     return () => {
-      console.log(`componentDidUnmount 卸載 : ${name}`);
+      console.log(`componentDidUnmount 卸載 : Fish: ${name}`);
     };
   }, []);
+
+  const handleChangeColor = (e) => {
+    e.preventDefault();
+    console.log(`handleChangeColor 變色 : ${name}`);
+    setMyColor("透明");
+  };
 
   console.log(`render 渲染 : ${name}`);
   return (
@@ -25,7 +31,7 @@ function Fish({ number = 0, type = "?", color = "" }) {
       </Card.Body>
       <Card.Footer>
         <Stack direction="horizontal" gap={1}>
-          <Button variant="success" onClick={() => setMyColor("透明")}>
+          <Button variant="success" onClick={handleChangeColor}>
             變色
           </Button>
         </Stack>
